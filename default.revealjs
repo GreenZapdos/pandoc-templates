@@ -23,10 +23,14 @@ $endif$
 $for(css)$
     <link rel="stylesheet" href="$css$"/>
 $endfor$
-$if(theme)$
-    <link rel="stylesheet" href="$revealjs-url$/css/theme/$theme$.css" id="theme">
+$if(theme-path)$
+    <link rel="stylesheet" href="$theme-path$" id="theme">
 $else$
-    <link rel="stylesheet" href="$revealjs-url$/css/theme/simple.css" id="theme">
+  $if(theme)$
+      <link rel="stylesheet" href="$revealjs-url$/css/theme/$theme$.css" id="theme"> // available themes are in /css/theme
+  $else$
+      <link rel="stylesheet" href="$revealjs-url$/css/theme/simple.css" id="theme">
+  $endif$
 $endif$
     <!-- If the query includes 'print-pdf', include the PDF print sheet -->
     <script>
@@ -90,7 +94,6 @@ $body$
         progress: true,
         history: true,
         center: true,
-        theme: $if(theme)$'$theme$'$else$Reveal.getQueryHash().theme$endif$, // available themes are in /css/theme
         transition: $if(transition)$'$transition$'$else$Reveal.getQueryHash().transition || 'default'$endif$, // default/cube/page/concave/zoom/linear/fade/none
 
         // Optional libraries used to extend on reveal.js
